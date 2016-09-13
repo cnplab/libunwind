@@ -1,7 +1,4 @@
 #include <stdio.h>
-#include <xenctrl.h>
-#include <xencall.h>
-#include <xenforeignmemory.h>
 #include "_UXEN_internal.h"
 
 int

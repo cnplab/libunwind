@@ -1,7 +1,3 @@
-#include <xenctrl.h>
-#include <xencall.h>
-#include <xenforeignmemory.h>
-#include <sys/user.h>
 #include "_UXEN_internal.h"
 
 int
