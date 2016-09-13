@@ -34,16 +34,6 @@ _UXEN_resume (unw_addr_space_t as, unw_cursor_t * cp, void *arg)
   return -UNW_ENOINFO;
 }
 
-int
-_UXEN_get_proc_name (unw_addr_space_t as, unw_word_t addr, char *bufp, size_t buflen,
-                     unw_word_t * offp, void *arg)
-{
-  Debug (16, "as=%p, addr=0x%lx, bufp=%p, buflen=%lu, offp=%p, arg=%p\n",
-         as, addr, bufp, buflen, offp, arg);
-  printf ("_UXEN_get_proc_name() not yet implemented!\n");
-  return -UNW_ENOINFO;
-}
-
 PROTECTED unw_accessors_t _UXEN_accessors = {
   .find_proc_info = _UXEN_find_proc_info,
   .put_unwind_info = _UXEN_put_unwind_info,

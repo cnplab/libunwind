@@ -12,9 +12,9 @@ struct UXEN_info
     int domid;
     int vcpu;
     char *fname;
-    struct elf_dyn_info edi;
     xencall_handle *callh;
     xenforeignmemory_handle *fmemh;
+    struct elf_dyn_info edi;
   };
 
 int get_vcpu_context(struct UXEN_info *ui, vcpu_guest_context_t *vc);

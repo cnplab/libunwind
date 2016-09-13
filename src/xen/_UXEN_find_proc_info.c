@@ -34,8 +34,8 @@ get_unwind_info (struct UXEN_info *ui, unw_addr_space_t as, unw_word_t ip)
 
   /* Here, SEGBASE is the starting-address of the (mmap'ped) segment
      which covers the IP we're looking for.  */
+  // TODO read this information from the ELF file
   segbase = 0;
-  //segbase = ip;
   mapoff = 4096;
   /*if (tdep_find_unwind_table (edi, as, path, segbase, mapoff, ip) < 0)
      return -UNW_ENOINFO; */

@@ -60,11 +60,13 @@ noinst_HEADERS += ptrace/_UPT_internal.h
 
 ### libunwind-xen:
 libunwind_xen_la_SOURCES = \
+	xen/_UXEN_elf.c \
 	xen/_UXEN_accessors.c \
 	xen/_UXEN_create.c \
 	xen/_UXEN_access_mem.c \
 	xen/_UXEN_access_reg.c \
 	xen/_UXEN_find_proc_info.c \
+	xen/_UXEN_get_proc_name.c \
 	xen/_UXEN_xen_glue.c
 noinst_HEADERS += xen/_UXEN_internal.h
 
