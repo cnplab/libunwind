@@ -13,6 +13,9 @@ lib_LTLIBRARIES += libunwind.la
 if BUILD_PTRACE
 lib_LTLIBRARIES += libunwind-ptrace.la
 endif
+if BUILD_XEN
+lib_LTLIBRARIES += libunwind-xen.la
+endif
 if BUILD_COREDUMP
 lib_LTLIBRARIES += libunwind-coredump.la
 endif
@@ -30,6 +33,10 @@ endif
 
 if BUILD_PTRACE
 pkgconfig_DATA += ptrace/libunwind-ptrace.pc
+endif
+
+if BUILD_XEN
+pkgconfig_DATA += xen/libunwind-xen.pc
 endif
 
 if BUILD_SETJMP
@@ -50,6 +57,16 @@ libunwind_ptrace_la_SOURCES =						  \
 	ptrace/_UPT_put_unwind_info.c ptrace/_UPT_get_proc_name.c	  \
 	ptrace/_UPT_reg_offset.c ptrace/_UPT_resume.c
 noinst_HEADERS += ptrace/_UPT_internal.h
+
+### libunwind-xen:
+libunwind_xen_la_SOURCES = \
+	xen/_UXEN_accessors.c \
+	xen/_UXEN_create.c \
+	xen/_UXEN_access_mem.c \
+	xen/_UXEN_access_reg.c \
+	xen/_UXEN_find_proc_info.c \
+	xen/_UXEN_xen_glue.c
+noinst_HEADERS += xen/_UXEN_internal.h
 
 ### libunwind-coredump:
 libunwind_coredump_la_SOURCES = \

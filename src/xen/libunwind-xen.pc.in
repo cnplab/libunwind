@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libunwind-xen
+Description: libunwind xen library
+Version: 1.0
+Requires: libunwind-generic libunwind
+Libs: -L${libdir} -lunwind-xen
+Cflags: -I${includedir}

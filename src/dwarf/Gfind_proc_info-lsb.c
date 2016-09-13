@@ -852,6 +852,7 @@ dwarf_search_unwind_table (unw_addr_space_t as, unw_word_t ip,
     {
       table = (const struct table_entry *) (uintptr_t) di->u.rti.table_data;
       table_len = di->u.rti.table_len * sizeof (unw_word_t);
+      Debug (4, "Unwind table has %lu entries\n", di->u.rti.table_len);
       debug_frame_base = 0;
     }
   else

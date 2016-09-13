@@ -120,6 +120,14 @@ AC_ARG_ENABLE(ptrace,
 AC_MSG_CHECKING([if we should build libunwind-ptrace])
 AC_MSG_RESULT([$enable_ptrace])
 
+AC_ARG_ENABLE(xen,
+	AS_HELP_STRING([--enable-xen],[building libunwind-xen library]),,
+        [AC_CHECK_HEADER([xenctrl.h], [enable_xen=yes], [enable_xen=no])]
+)
+
+AC_MSG_CHECKING([if we should build libunwind-xen])
+AC_MSG_RESULT([$enable_xen])
+
 AC_ARG_ENABLE(setjmp,
 	AS_HELP_STRING([--enable-setjmp],[building libunwind-setjmp library]),,
         [AS_IF([test x$target_arch == x$host_arch], [enable_setjmp=yes], [enable_setjmp=no])]
@@ -143,6 +151,7 @@ AC_MSG_RESULT([$target_os])
 
 AM_CONDITIONAL(BUILD_COREDUMP, test x$enable_coredump = xyes)
 AM_CONDITIONAL(BUILD_PTRACE, test x$enable_ptrace = xyes)
+AM_CONDITIONAL(BUILD_XEN, test x$enable_xen = xyes)
 AM_CONDITIONAL(BUILD_SETJMP, test x$enable_setjmp = xyes)
 AM_CONDITIONAL(REMOTE_ONLY, test x$target_arch != x$host_arch)
 AM_CONDITIONAL(ARCH_AARCH64, test x$target_arch = xaarch64)
@@ -400,6 +409,6 @@ AC_CONFIG_FILES(Makefile src/Makefile tests/Makefile tests/check-namespace.sh
 		include/libunwind-common.h
                 include/libunwind.h include/tdep/libunwind_i.h)
 AC_CONFIG_FILES(src/unwind/libunwind.pc src/coredump/libunwind-coredump.pc
-                src/ptrace/libunwind-ptrace.pc src/setjmp/libunwind-setjmp.pc
-                src/libunwind-generic.pc)
+                src/ptrace/libunwind-ptrace.pc src/xen/libunwind-xen.pc
+                src/setjmp/libunwind-setjmp.pc src/libunwind-generic.pc)
 AC_OUTPUT

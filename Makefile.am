@@ -1,5 +1,6 @@
 include_HEADERS = include/libunwind-dynamic.h \
     include/libunwind-ptrace.h \
+    include/libunwind-xen.h \
     include/libunwind-coredump.h
 
 if ARCH_AARCH64
