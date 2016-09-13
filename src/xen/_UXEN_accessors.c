@@ -23,7 +23,7 @@ _UXEN_access_fpreg (unw_addr_space_t as, unw_regnum_t regnum, unw_fpreg_t * fpva
 {
   Debug (16, "as=%p, regnum=%u, fpvalp=%p, write=%u, arg=%p\n", as, regnum, fpvalp, write, arg);
   Debug (1, "not implemented!\n");
-  return -UNW_EBADREG;
+  return -UNW_EINVAL;
 }
 
 int
@@ -31,7 +31,7 @@ _UXEN_resume (unw_addr_space_t as, unw_cursor_t * cp, void *arg)
 {
   Debug (16, "as=%p, cp=%p, arg=%p\n", as, cp, arg);
   Debug (1, "not implemented!\n");
-  return -UNW_ENOINFO;
+  return -UNW_EINVAL;
 }
 
 PROTECTED unw_accessors_t _UXEN_accessors = {
