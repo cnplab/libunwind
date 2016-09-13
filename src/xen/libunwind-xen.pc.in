@@ -7,5 +7,5 @@ Name: libunwind-xen
 Description: libunwind xen library
 Version: 1.0
 Requires: libunwind-generic libunwind
-Libs: -L${libdir} -lunwind-xen
+Libs: -L${libdir} -lunwind-xen -lxencall -lxenforeignmemory
 Cflags: -I${includedir}

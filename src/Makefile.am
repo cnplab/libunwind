@@ -68,6 +68,7 @@ libunwind_xen_la_SOURCES = \
 	xen/_UXEN_find_proc_info.c \
 	xen/_UXEN_get_proc_name.c \
 	xen/_UXEN_xen_glue.c
+libunwind_xen_la_LIBADD = -lxencall -lxenforeignmemory
 noinst_HEADERS += xen/_UXEN_internal.h
 
 ### libunwind-coredump:
