@@ -127,7 +127,7 @@ guest_to_host (struct UXEN_info *ui, unw_word_t gaddr)
     }
   new_item->base = base;
   xen_map_domu_page (ui, base, &new_item->mfn, &new_item->buf);
-  Debug (12, "mapping new page %#" PRIx64 "->%p\n", new_item->base, new_item->buf);
+  Debug (1, "mapping new page %#" PRIx64 "->%p\n", new_item->base, new_item->buf);
   if (new_item->buf == NULL)
     {
       fprintf (stderr, "failed to allocate memory mapping page.\n");
