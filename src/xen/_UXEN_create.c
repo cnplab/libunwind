@@ -33,6 +33,8 @@ _UXEN_create (int domid, int vcpu, char *fname)
       goto close_fmemh;
     }
   Debug (15, "mapped ELF %s (%zu bytes)\n", ui->fname, ui->edi.ei.size);
+  get_ptload_offset (ui);
+  Debug (15, "PT_LOAD segment: physical offset 0x%lx, base addr 0x%lx\n", ui->offset, ui->baseaddr);
 
   return ui;
 

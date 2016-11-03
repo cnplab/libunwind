@@ -5,7 +5,6 @@
 static int
 get_unwind_info (struct UXEN_info *ui, unw_addr_space_t as, unw_word_t ip)
 {
-  unsigned long segbase, mapoff;
   struct elf_dyn_info *edi = &ui->edi;
 
 #if UNW_TARGET_IA64 && defined(__linux)
@@ -23,14 +22,7 @@ get_unwind_info (struct UXEN_info *ui, unw_addr_space_t as, unw_word_t ip)
       || (edi->di_debug.format != -1 && ip >= edi->di_debug.start_ip && ip < edi->di_debug.end_ip))
     return 0;
 
-  /* Here, SEGBASE is the starting-address of the (mmap'ped) segment
-     which covers the IP we're looking for.  */
-  // TODO read this information from the ELF file
-  segbase = 0;
-  mapoff = 4096;
-  /*if (tdep_find_unwind_table (edi, as, path, segbase, mapoff, ip) < 0)
-     return -UNW_ENOINFO; */
-  if (tdep_find_unwind_table (edi, as, ui->fname, segbase, mapoff, ip) < 0)
+  if (tdep_find_unwind_table (edi, as, ui->fname, ui->baseaddr, ui->offset, ip) < 0)
     {
       printf ("could not find unwind table!\n");
       return -UNW_ENOINFO;
