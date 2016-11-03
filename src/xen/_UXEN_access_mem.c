@@ -11,7 +11,7 @@ typedef struct mapped_page
   }
 mapped_page_t;
 
-unsigned long
+static unsigned long
 xen_translate_foreign_address (struct UXEN_info *ui, unsigned long long virt)
 {
   vcpu_guest_context_t ctx;
@@ -85,7 +85,7 @@ xen_translate_foreign_address (struct UXEN_info *ui, unsigned long long virt)
   return addr;
 }
 
-void
+static void
 xen_map_domu_page (struct UXEN_info *ui, uint64_t addr, unsigned long *mfn, void **buf)
 {
   int err = 0;
@@ -94,7 +94,7 @@ xen_map_domu_page (struct UXEN_info *ui, uint64_t addr, unsigned long *mfn, void
   *buf = xenforeignmemory_map (ui->fmemh, ui->domid, PROT_READ, 1, (xen_pfn_t *) mfn, &err);
 }
 
-void *
+static void *
 guest_to_host (struct UXEN_info *ui, unw_word_t gaddr)
 {
   static mapped_page_t *map_head = NULL;
