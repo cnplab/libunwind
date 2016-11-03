@@ -23,15 +23,6 @@ get_unwind_info (struct UXEN_info *ui, unw_addr_space_t as, unw_word_t ip)
       || (edi->di_debug.format != -1 && ip >= edi->di_debug.start_ip && ip < edi->di_debug.end_ip))
     return 0;
 
-  invalidate_edi (edi);
-
-  if (elf_map_image (&edi->ei, ui->fname))
-    {
-      printf ("could not read ELF file %s!\n", ui->fname);
-      return -UNW_ENOINFO;
-    }
-  Debug (15, "mapped ELF %s (%zu bytes)\n", ui->fname, ui->edi.ei.size);
-
   /* Here, SEGBASE is the starting-address of the (mmap'ped) segment
      which covers the IP we're looking for.  */
   // TODO read this information from the ELF file

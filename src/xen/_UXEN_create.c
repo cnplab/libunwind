@@ -12,7 +12,7 @@ _UXEN_create (int domid, int vcpu, char *fname)
   memset (ui, 0, sizeof (*ui));
   ui->domid = domid;
   ui->vcpu = vcpu;
-  ui->fname = fname;
+  ui->fname = strdup (fname);
   ui->edi.di_cache.format = -1;
   ui->edi.di_debug.format = -1;
   ui->callh = xencall_open (NULL, XENCALL_OPENFLAG_NON_REENTRANT);
@@ -25,7 +25,20 @@ _UXEN_create (int domid, int vcpu, char *fname)
   if (ui->fmemh == NULL)
     {
       printf ("xenforeignmemory handle is NULL!\n");
-      return NULL;
+      goto close_callh;
     }
+  if (elf_map_image (&ui->edi.ei, ui->fname))
+    {
+      printf ("could not read ELF file %s!\n", ui->fname);
+      goto close_fmemh;
+    }
+  Debug (15, "mapped ELF %s (%zu bytes)\n", ui->fname, ui->edi.ei.size);
+
   return ui;
+
+close_fmemh:
+  xenforeignmemory_close (ui->fmemh);
+close_callh:
+  xencall_close (ui->callh);
+  return NULL;
 }
