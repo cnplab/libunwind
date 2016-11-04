@@ -11,6 +11,7 @@ struct UXEN_info
   {
     int domid;
     int vcpu;
+    unsigned int wordsize;
     char *fname;
     xencall_handle *callh;
     xenforeignmemory_handle *fmemh;

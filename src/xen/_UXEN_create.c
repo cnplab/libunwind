@@ -27,6 +27,8 @@ _UXEN_create (int domid, int vcpu, char *fname)
       printf ("xenforeignmemory handle is NULL!\n");
       goto close_callh;
     }
+  ui->wordsize = UWXEN_get_word_size (ui);
+  Debug (15, "domid %d has word size %u\n", ui->domid, ui->wordsize);
   if (elf_map_image (&ui->edi.ei, ui->fname))
     {
       printf ("could not read ELF file %s!\n", ui->fname);

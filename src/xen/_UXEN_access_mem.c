@@ -20,12 +20,10 @@ xen_translate_foreign_address (struct UXEN_info *ui, unsigned long long virt)
   uint64_t addr, mask, clamp, offset;
   xen_pfn_t pfn;
   void *map;
-  int wordsize;
 
   UWXEN_get_vcpu_context (ui, &ctx);
-  wordsize = UWXEN_get_word_size (ui);
 
-  if (wordsize == 8)
+  if (ui->wordsize == 8)
     {
       /* 64-bit has a 4-level page table */
       levels = 4;
