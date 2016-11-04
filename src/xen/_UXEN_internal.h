@@ -31,6 +31,7 @@ UWXEN_get_vcpu_context(struct UXEN_info *ui, vcpu_guest_context_t *vc)
   domctl.cmd = XEN_DOMCTL_getvcpucontext;
   domctl.u.vcpucontext.vcpu = (uint16_t)ui->vcpu;
   domctl.u.vcpucontext.ctxt.p = vc;
+  Debug (16, "doing get_vcpu_context hypercall\n");
   return xencall1(ui->callh, __HYPERVISOR_domctl, (unsigned long)(&domctl));
 }
 
@@ -41,6 +42,7 @@ UWXEN_get_word_size(struct UXEN_info *ui)
   domctl.domain = (domid_t)ui->domid;
   domctl.interface_version = XEN_DOMCTL_INTERFACE_VERSION;
   domctl.cmd = XEN_DOMCTL_get_address_size;
+  Debug (16, "doing get_address_size hypercall\n");
   if (xencall1(ui->callh, __HYPERVISOR_domctl, (unsigned long)(&domctl)))
     return -1;
   return (domctl.u.address_size.size / 8);
