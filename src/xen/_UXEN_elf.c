@@ -6,7 +6,7 @@
 #include "../elfxx.c"
 
 void
-get_ptload_offset (struct UXEN_info *ui)
+UWXEN_get_ptload_offset (struct UXEN_info *ui)
 {
   Elf_W (Ehdr) * ehdr;
   Elf_W (Phdr) * phdr;

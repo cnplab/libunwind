@@ -22,8 +22,8 @@ xen_translate_foreign_address (struct UXEN_info *ui, unsigned long long virt)
   void *map;
   int wordsize;
 
-  get_vcpu_context (ui, &ctx);
-  wordsize = get_word_size (ui);
+  UWXEN_get_vcpu_context (ui, &ctx);
+  wordsize = UWXEN_get_word_size (ui);
 
   if (wordsize == 8)
     {
