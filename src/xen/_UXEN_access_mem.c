@@ -143,6 +143,9 @@ _UXEN_access_mem (unw_addr_space_t as, unw_word_t addr, unw_word_t * valp, int w
   void *xenp;
 
   Debug (16, "as=%p, addr=0x%lx, valp=0x%p, write=%d, arg=%p\n", as, addr, valp, write, arg);
+  if (write)
+    return -UNW_EINVAL;
+
   xenp = guest_to_host (ui, addr);
   memcpy (valp, xenp, sizeof (unw_word_t));
   Debug (15, "xen translation: 0x%lx->0x%p, content 0x%lx\n", addr, xenp, *valp);
