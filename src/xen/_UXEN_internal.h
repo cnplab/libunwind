@@ -7,6 +7,13 @@
 #include "xencall.h"
 #include "xenforeignmemory.h"
 
+#undef PAGE_SHIFT
+#define PAGE_SHIFT XC_PAGE_SHIFT
+#undef PAGE_SIZE
+#define PAGE_SIZE  (1<<PAGE_SHIFT)
+#undef PAGE_MASK
+#define PAGE_MASK  (~(PAGE_SIZE-1))
+
 struct UXEN_info
   {
     int domid;
