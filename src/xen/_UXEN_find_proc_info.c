@@ -24,7 +24,7 @@ get_unwind_info (struct UXEN_info *ui, unw_addr_space_t as, unw_word_t ip)
 
   if (tdep_find_unwind_table (edi, as, ui->fname, ui->baseaddr, ui->offset, ip) < 0)
     {
-      printf ("could not find unwind table!\n");
+      Debug (0, "could not find unwind table!\n");
       return -UNW_ENOINFO;
     }
 
@@ -44,7 +44,7 @@ get_unwind_info (struct UXEN_info *ui, unw_addr_space_t as, unw_word_t ip)
 #endif
       && edi->di_debug.format == -1)
     {
-      printf ("Ended up with neither di_cache no di_debug!\n");
+      Debug (0, "Ended up with neither di_cache no di_debug!\n");
       return -UNW_ENOINFO;
     }
 
@@ -64,7 +64,7 @@ _UXEN_find_proc_info (unw_addr_space_t as, unw_word_t ip, unw_proc_info_t * pip,
          as, ip, pip, need_unwind_info, arg);
   if (get_unwind_info (ui, as, ip) < 0)
     {
-      printf ("could not get unwind info!\n");
+      Debug (0, "could not get unwind info!\n");
       return -UNW_ENOINFO;
     }
 

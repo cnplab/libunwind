@@ -3,9 +3,9 @@
 void
 _UXEN_put_unwind_info (unw_addr_space_t as, unw_proc_info_t * pip, void *arg)
 {
-  printf ("_UXEN_put_unwind_info()\n");
-  printf ("  as=%p, pip=%p, arg=%p\n", as, pip, arg);
-  printf ("  not implemented.\n");
+  Debug (0, "_UXEN_put_unwind_info()\n");
+  Debug (16, "  as=%p, pip=%p, arg=%p\n", as, pip, arg);
+  Debug (0, "  not implemented.\n");
 }
 
 int

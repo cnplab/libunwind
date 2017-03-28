@@ -13,7 +13,6 @@ UWXEN_get_ptload_offset (struct UXEN_info *ui)
   int i;
   int seen_loadable = 0;
   void *image = ui->edi.ei.image;
-
   ehdr = image;
   phdr = (Elf_W (Phdr) *) (image + ehdr->e_phoff);
 
@@ -23,8 +22,8 @@ UWXEN_get_ptload_offset (struct UXEN_info *ui)
         {
           if (seen_loadable)
             {
-              printf ("warning: found more than one lodable segment in ELF file. Ignoring all but the first!\n");
-              printf ("This will probably lead to breakage if your code spans more than that first segment.\n");
+              Debug (0, "warning: found more than one lodable segment in ELF file. Ignoring all but the first!\n");
+              Debug (0, "This will probably lead to breakage if your code spans more than that first segment.\n");
               continue;
             }
           seen_loadable = 1;

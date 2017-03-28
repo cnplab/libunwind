@@ -117,7 +117,7 @@ guest_to_host (struct UXEN_info *ui, unw_word_t gaddr)
   new_item = malloc (sizeof (mapped_page_t));
   if (new_item == NULL)
     {
-      fprintf (stderr, "failed to allocate memory for page struct.\n");
+      Debug (0, "failed to allocate memory for page struct.\n");
       return NULL;
     }
   new_item->base = base;
@@ -125,7 +125,7 @@ guest_to_host (struct UXEN_info *ui, unw_word_t gaddr)
   Debug (1, "mapping new page %#" PRIx64 "->%p\n", new_item->base, new_item->buf);
   if (new_item->buf == NULL)
     {
-      fprintf (stderr, "failed to allocate memory mapping page.\n");
+      Debug (0, "failed to allocate memory mapping page.\n");
       return NULL;
     }
   new_item->next = NULL;

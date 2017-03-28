@@ -6,6 +6,7 @@ _UXEN_create (int domid, int vcpu, char *fname)
 {
   struct UXEN_info *ui = malloc (sizeof (struct UXEN_info));
 
+  Debug (16, "domid=%d, vcpu=%d, fname=%s\n", domid, vcpu, fname);
   if (!ui)
     return NULL;
 
@@ -18,20 +19,20 @@ _UXEN_create (int domid, int vcpu, char *fname)
   ui->callh = xencall_open (NULL, XENCALL_OPENFLAG_NON_REENTRANT);
   if (ui->callh == NULL)
     {
-      printf ("xencall handle is NULL!\n");
+      Debug (0, "libunwind:_UXEN_create: xencall handle is NULL!\n");
       return NULL;
     }
   ui->fmemh = xenforeignmemory_open (NULL, 0);
   if (ui->fmemh == NULL)
     {
-      printf ("xenforeignmemory handle is NULL!\n");
+      Debug (0, "libunwind:_UXEN_create: xenforeignmemory handle is NULL!\n");
       goto close_callh;
     }
   ui->wordsize = UWXEN_get_word_size (ui);
   Debug (15, "domid %d has word size %u\n", ui->domid, ui->wordsize);
   if (elf_map_image (&ui->edi.ei, ui->fname))
     {
-      printf ("could not read ELF file %s!\n", ui->fname);
+      Debug (0, "libunwind:_UXEN_create: could not read ELF file %s!\n", ui->fname);
       goto close_fmemh;
     }
   Debug (15, "mapped ELF %s (%zu bytes)\n", ui->fname, ui->edi.ei.size);
