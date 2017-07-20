@@ -1,6 +1,7 @@
 SOVERSION=8:1:0		# See comments at end of file.
 SETJMP_SO_VERSION=0:0:0
 COREDUMP_SO_VERSION=0:0:0
+XEN_SO_VERSION=1:0:0
 #
 # Don't link with start-files since we don't use any constructors/destructors:
 #
@@ -68,6 +69,8 @@ libunwind_xen_la_SOURCES = \
 	xen/_UXEN_find_proc_info.c \
 	xen/_UXEN_get_proc_name.c \
 	xen/_UXEN_change_vcpu.c
+libunwind_xen_la_LDFLAGS = $(COMMON_SO_LDFLAGS) \
+				-version-info $(XEN_SO_VERSION)
 libunwind_xen_la_LIBADD = -lxencall -lxenforeignmemory
 noinst_HEADERS += xen/_UXEN_internal.h
 

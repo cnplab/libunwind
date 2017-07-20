@@ -32,7 +32,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.  */
  * UXEN_info to every application that uses libunwind-xen.
  */
 void
-_UXEN_change_vcpu (struct UXEN_info *ui, int vcpu)
+_UXEN_change_vcpu (struct UXEN_info *ui, unsigned int vcpu)
 {
   ui->vcpu = vcpu;
 }
